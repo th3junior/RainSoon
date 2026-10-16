@@ -1,0 +1,59 @@
+# RainSoon + Alexa (Alexa Media Player)
+# Replace entity_id and media_player with yours.
+
+# --- 1) When rain is first expected in the forecast period ---
+alias: RainSoon — Alexa when rain expected
+description: Speaks the message attribute (language set in RainSoon options)
+mode: single
+trigger:
+  - platform: state
+    entity_id: binary_sensor.rainsoon_chuva_prevista
+    from: "off"
+    to: "on"
+action:
+  - service: notify.alexa_media
+    data:
+      message: "{{ state_attr('sensor.rainsoon_proxima_chuva', 'message') }}"
+      target: media_player.echo_sala
+      data:
+        type: announce
+
+# --- 2) Only if less than 3 hours away ---
+alias: RainSoon — Alexa rain soon (under 3 h)
+mode: single
+trigger:
+  - platform: state
+    entity_id: binary_sensor.rainsoon_chuva_prevista
+    to: "on"
+condition:
+  - condition: numeric_state
+    entity_id: sensor.rainsoon_proxima_chuva
+    below: 180
+action:
+  - service: notify.alexa_media
+    data:
+      message: "{{ state_attr('sensor.rainsoon_proxima_chuva', 'message_short') }}"
+      target: media_player.echo_sala
+
+# --- 3) Morning summary at 8:00 (rain or clear — same attribute) ---
+# sensor.rainsoon_proxima_chuva attributes (integration language):
+#   rain_expected: true  → rain alert text
+#   rain_expected: false → e.g. PT "Nas próximas 12 horas, não há chuva prevista."
+#   lookahead_hours matches your RainSoon forecast period setting
+alias: RainSoon — Alexa morning
+trigger:
+  - platform: time
+    at: "08:00:00"
+action:
+  - service: notify.alexa_media
+    data:
+      message: >-
+        {{ state_attr('sensor.rainsoon_proxima_chuva', 'message_short')
+           or state_attr('sensor.rainsoon_proxima_chuva', 'message') }}
+      target: media_player.echo_sala
+
+# Optional: longer briefing only when rain is expected
+# condition:
+#   - condition: state
+#     entity_id: binary_sensor.rainsoon_chuva_prevista
+#     state: "on"

@@ -1,0 +1,133 @@
+{
+  "config": {
+    "step": {
+      "location": {
+        "title": "¿Dónde prever?",
+        "description": "Paso 1 de 3 — Open-Meteo (gratis, sin API key).",
+        "data": {
+          "location_mode": "Origen de la ubicación",
+          "location": "Ubicación en el mapa"
+        },
+        "data_description": {
+          "location_mode": "Lo habitual es la ubicación del Home Assistant.",
+          "location": "Solo si eligió mapa."
+        }
+      },
+      "language": {
+        "title": "Idioma de la integración",
+        "description": "Paso 2 de 3 — mensajes Alexa, alertas y condiciones. Independiente del idioma de la interfaz HA.",
+        "data": { "language": "Idioma" },
+        "data_description": {
+          "language": "Cámbielo en Opciones."
+        }
+      },
+      "preset": {
+        "title": "¿Cómo avisar?",
+        "description": "Paso 3 de 3 — perfil listo. Si duda: **Equilibrado**.",
+        "data": { "preset": "Perfil de alerta" },
+        "data_description": { "preset": "Se puede cambiar en Opciones." }
+      },
+      "thresholds": {
+        "title": "Ajuste personalizado",
+        "data": {
+          "lookahead_hours": "Período de previsión (horas adelante)",
+          "probability_threshold": "Probabilidad mínima (%)",
+          "precipitation_threshold_mm": "Lluvia mínima por hora (mm/h)",
+          "update_interval_minutes": "Actualizar cada (min)"
+        },
+        "data_description": {
+          "lookahead_hours": "Horas desde ahora — no es una ventana física. Recomendado: 12–24.",
+          "probability_threshold": "Ej.: 50 = alerta con al menos 50% en esa hora.",
+          "precipitation_threshold_mm": "Ej.: 0,1 filtra llovizna.",
+          "update_interval_minutes": "15 min suele ir bien."
+        }
+      },
+      "reconfigure": {
+        "title": "RainSoon — ajustes",
+        "data": {
+          "language": "Idioma",
+          "preset": "Perfil",
+          "lookahead_hours": "Período (horas)",
+          "probability_threshold": "Probabilidad mínima (%)",
+          "precipitation_threshold_mm": "Lluvia mínima (mm/h)",
+          "update_interval_minutes": "Intervalo (min)"
+        }
+      }
+    },
+    "error": {
+      "home_location_not_set": "Configure la ubicación en Ajustes → Sistema → General.",
+      "location_required": "Elija un punto en el mapa.",
+      "invalid_config": "Valor no válido."
+    },
+    "abort": {
+      "reconfigure_successful": "Listo. RainSoon se recarga."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "RainSoon — opciones",
+        "data": {
+          "language": "Idioma",
+          "preset": "Perfil",
+          "lookahead_hours": "Período de previsión (horas)",
+          "probability_threshold": "Probabilidad mínima (%)",
+          "precipitation_threshold_mm": "Lluvia mínima (mm/h)",
+          "update_interval_minutes": "Intervalo (min)"
+        },
+        "data_description": {
+          "language": "Mensajes Alexa y textos en este idioma.",
+          "lookahead_hours": "Período hacia adelante — no ventana física."
+        }
+      }
+    },
+    "error": { "invalid_config": "Valor no válido." }
+  },
+  "selector": {
+    "location_mode": {
+      "options": {
+        "home": "Ubicación del Home Assistant (recomendado)",
+        "map": "Elegir en el mapa"
+      }
+    },
+    "preset": {
+      "options": {
+        "recommended": "Equilibrado — 12 h, 50%, 0,1 mm/h",
+        "heavy": "Solo lluvia relevante — 12 h, 70%, 0,5 mm/h",
+        "sensitive": "Aviso temprano — 24 h, 40%, 0,05 mm/h",
+        "custom": "Personalizado"
+      }
+    },
+    "language": {
+      "options": {
+        "en": "English",
+        "pt": "Português",
+        "es": "Español"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "proxima_chuva": { "name": "Próxima lluvia" },
+      "horas_ate_chuva": { "name": "Horas hasta la lluvia" },
+      "estado_alerta": { "name": "Estado de alerta" },
+      "proxima_probabilidade": { "name": "Probabilidad próxima lluvia" },
+      "max_probabilidade": { "name": "Probabilidad máxima en el período" },
+      "precipitacao_proxima_chuva": { "name": "Intensidad en la próxima lluvia" },
+      "condicao_proxima_chuva": { "name": "Condición en la próxima lluvia" },
+      "condicao_atual": { "name": "Condición ahora" },
+      "temperatura_atual": { "name": "Temperatura ahora" },
+      "umidade_atual": { "name": "Humedad ahora" },
+      "vento_atual": { "name": "Viento ahora" },
+      "nuvens_atual": { "name": "Nubosidad ahora" },
+      "precipitacao_atual": { "name": "Lluvia ahora (mm/h)" },
+      "precipitacao_total_janela": { "name": "Lluvia total en el período" },
+      "precipitacao_max_janela": { "name": "Mayor lluvia en el período" },
+      "vento_max_janela": { "name": "Pico de viento en el período" }
+    },
+    "binary_sensor": {
+      "chuva_prevista": { "name": "Lluvia prevista" },
+      "chuva_agora": { "name": "Lloviendo ahora" }
+    }
+  }
+}

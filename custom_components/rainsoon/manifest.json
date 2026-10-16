@@ -1,0 +1,11 @@
+{
+  "domain": "rainsoon",
+  "name": "RainSoon",
+  "codeowners": ["@th3junior"],
+  "config_flow": true,
+  "documentation": "https://github.com/th3junior/RainSoon",
+  "integration_type": "service",
+  "iot_class": "cloud_polling",
+  "requirements": [],
+  "version": "3.0.3"
+}

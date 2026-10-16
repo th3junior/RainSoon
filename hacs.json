@@ -1,0 +1,8 @@
+{
+  "name": "RainSoon",
+  "content_in_root": false,
+  "render_readme": true,
+  "country": ["US", "BR", "ES"],
+  "homeassistant": "2024.1.0",
+  "filename": "rainsoon"
+}

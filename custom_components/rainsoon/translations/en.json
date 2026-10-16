@@ -1,0 +1,31 @@
+{
+  "config": {
+    "step": {
+      "language": {
+        "title": "Integration language",
+        "description": "Step 2 of 3 — language for Alexa messages and weather text.",
+        "data": { "language": "Language" },
+        "data_description": {
+          "language": "Change anytime under Options."
+        }
+      }
+    }
+  },
+  "selector": {
+    "language": {
+      "options": {
+        "en": "English",
+        "pt": "Português",
+        "es": "Español"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "precipitacao_total_janela": { "name": "Total rain in forecast period" },
+      "precipitacao_max_janela": { "name": "Heaviest rain in forecast period" },
+      "max_probabilidade": { "name": "Max probability in period" },
+      "vento_max_janela": { "name": "Peak wind in forecast period" }
+    }
+  }
+}

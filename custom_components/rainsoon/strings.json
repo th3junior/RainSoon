@@ -1,0 +1,156 @@
+{
+  "config": {
+    "step": {
+      "location": {
+        "title": "Where to forecast?",
+        "description": "Step 1 of 3 — RainSoon uses Open-Meteo (free, no API key).",
+        "data": {
+          "location_mode": "Location source",
+          "location": "Map location"
+        },
+        "data_description": {
+          "location_mode": "Most users should pick Home Assistant home location.",
+          "location": "Only if you chose map — pin your yard or city."
+        }
+      },
+      "language": {
+        "title": "Integration language",
+        "description": "Step 2 of 3 — language for Alexa messages, alert text, and weather descriptions (independent of Home Assistant UI language).",
+        "data": {
+          "language": "Language"
+        },
+        "data_description": {
+          "language": "Change anytime under integration Options."
+        }
+      },
+      "preset": {
+        "title": "How should we alert you?",
+        "description": "Step 3 of 3 — pick a profile. When unsure, choose **Balanced**.",
+        "data": {
+          "preset": "Alert profile"
+        },
+        "data_description": {
+          "preset": "You can change this later under Options."
+        }
+      },
+      "thresholds": {
+        "title": "Custom tuning",
+        "description": "Only if you chose **Custom**. RainSoon alerts on the first hour where probability AND rain exceed the limits below.",
+        "data": {
+          "lookahead_hours": "Forecast period (hours ahead)",
+          "probability_threshold": "Minimum probability to alert (%)",
+          "precipitation_threshold_mm": "Minimum rain per hour (mm/h)",
+          "update_interval_minutes": "Update every (minutes)"
+        },
+        "data_description": {
+          "lookahead_hours": "How many hours from now we scan — not a physical window. Recommended: 12–24.",
+          "probability_threshold": "e.g. 50 = alert when hourly forecast is at least 50%.",
+          "precipitation_threshold_mm": "e.g. 0.1 filters drizzle; 0.5 needs heavier rain.",
+          "update_interval_minutes": "15 minutes is a good balance."
+        }
+      },
+      "reconfigure": {
+        "title": "RainSoon — settings",
+        "description": "Change language, profile, or numbers. Location only changes if you remove and re-add the integration.",
+        "data": {
+          "language": "Language",
+          "preset": "Alert profile",
+          "lookahead_hours": "Forecast period (hours ahead)",
+          "probability_threshold": "Minimum probability (%)",
+          "precipitation_threshold_mm": "Minimum rain (mm/h)",
+          "update_interval_minutes": "Update interval (min)"
+        },
+        "data_description": {
+          "language": "Messages and condition names use this language.",
+          "preset": "Pick a profile or **Custom** to edit numbers.",
+          "lookahead_hours": "Hours scanned from now (forecast period).",
+          "probability_threshold": "Hourly probability limit from Open-Meteo.",
+          "precipitation_threshold_mm": "mm/h limit on the alert hour.",
+          "update_interval_minutes": "How often we poll the API."
+        }
+      }
+    },
+    "error": {
+      "home_location_not_set": "Set home location in Settings → System → General.",
+      "location_required": "Pick a point on the map.",
+      "invalid_config": "A value is out of range. Check the fields."
+    },
+    "abort": {
+      "reconfigure_successful": "Done! RainSoon is reloading with your new settings."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "RainSoon — options",
+        "description": "Language, profile, and forecast period. Saving reloads the integration.",
+        "data": {
+          "language": "Language",
+          "preset": "Alert profile",
+          "lookahead_hours": "Forecast period (hours ahead)",
+          "probability_threshold": "Minimum probability (%)",
+          "precipitation_threshold_mm": "Minimum rain (mm/h)",
+          "update_interval_minutes": "Update interval (min)"
+        },
+        "data_description": {
+          "language": "Alexa messages and sensor text follow this language.",
+          "preset": "Balanced fits most homes.",
+          "lookahead_hours": "Period analyzed ahead — not a physical window. Use 12–24 h.",
+          "probability_threshold": "Higher = fewer alerts.",
+          "precipitation_threshold_mm": "Higher = only stronger rain.",
+          "update_interval_minutes": "Between 5 and 60 minutes."
+        }
+      }
+    },
+    "error": {
+      "invalid_config": "A value is out of range. Check the fields."
+    }
+  },
+  "selector": {
+    "location_mode": {
+      "options": {
+        "home": "Home Assistant home (recommended)",
+        "map": "Pick another point on the map"
+      }
+    },
+    "preset": {
+      "options": {
+        "recommended": "Balanced — 12 h, 50%, 0.1 mm/h (recommended)",
+        "heavy": "Heavy rain only — 12 h, 70%, 0.5 mm/h",
+        "sensitive": "Early warning — 24 h, 40%, 0.05 mm/h",
+        "custom": "Custom — set numbers on the next screen"
+      }
+    },
+    "language": {
+      "options": {
+        "en": "English",
+        "pt": "Português",
+        "es": "Español"
+      }
+    }
+  },
+  "entity": {
+    "sensor": {
+      "proxima_chuva": { "name": "Next rain" },
+      "horas_ate_chuva": { "name": "Hours until rain" },
+      "estado_alerta": { "name": "Alert status" },
+      "proxima_probabilidade": { "name": "Next rain probability" },
+      "max_probabilidade": { "name": "Max probability in period" },
+      "precipitacao_proxima_chuva": { "name": "Rain intensity at next alert" },
+      "condicao_proxima_chuva": { "name": "Condition at next rain" },
+      "condicao_atual": { "name": "Condition now" },
+      "temperatura_atual": { "name": "Temperature now" },
+      "umidade_atual": { "name": "Humidity now" },
+      "vento_atual": { "name": "Wind now" },
+      "nuvens_atual": { "name": "Cloud cover now" },
+      "precipitacao_atual": { "name": "Rain now (mm/h)" },
+      "precipitacao_total_janela": { "name": "Total rain in forecast period" },
+      "precipitacao_max_janela": { "name": "Heaviest rain in forecast period" },
+      "vento_max_janela": { "name": "Peak wind in forecast period" }
+    },
+    "binary_sensor": {
+      "chuva_prevista": { "name": "Rain expected" },
+      "chuva_agora": { "name": "Raining now" }
+    }
+  }
+}
